@@ -91,9 +91,9 @@ class AppLayout extends React.Component {
           </div>
 
           <footer className="al-footer clearfix">
-            <div className="al-footer-right">Created with <i className="ion-heart"></i></div>
+            <div className="al-footer-right">Created by <i className="ion-heart"></i></div>
             <div className="al-footer-main clearfix">
-              <div className="al-copy">React Webpack Skeleton</div>
+              <div className="al-copy">Svicom Albo Fornitori</div>
               <ul className="al-share clearfix">
                 <li><i className="socicon socicon-facebook"></i></li>
                 <li><i className="socicon socicon-twitter"></i></li>
@@ -112,4 +112,3 @@ class AppLayout extends React.Component {
 }
 
 export default withRouter(AppLayout);
-

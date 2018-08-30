@@ -54,6 +54,9 @@ export class Welcome extends React.Component {
                   label='Password'
                   value={this.state.lastName} />
               </div>
+              <div className='col.md-6'>
+                  <Link to='/register'>Clicca qui per registrarti</Link>
+              </div>
             </Col>
           </Row>
         </Modal>
