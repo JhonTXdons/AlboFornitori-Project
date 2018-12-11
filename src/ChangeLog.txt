@@ -12,6 +12,7 @@
 -risoluzione filtro ricerca bandi per categoria
 -notifiche konora
 
-Andrea 
+Andrea
 -----------------------------------------------------------------------------
-- Tentativo di utilizzare GitKraken
+- Tentativo di utilizzare GitKraken,
+- Tentativo quasi fatto...si attende l'opera di vittorio
