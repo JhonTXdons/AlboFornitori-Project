@@ -16,3 +16,4 @@ Andrea
 -----------------------------------------------------------------------------
 - Tentativo di utilizzare GitKraken,
 - Tentativo quasi fatto...si attende l'opera di vittorio
+- lo vedi?
