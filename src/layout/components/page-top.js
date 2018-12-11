@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+import { Headroom } from 'react-headroom';
 import moment from 'moment';
 import { noop } from 'lodash';
 import Person from 'react-blur-admin/dist/assets/img/person.svg';
+
+import logo from 'public/svicomlogo1.png';
 
 import {SearchBar} from 'src/layout/components/search-bar';
 
 // Lib
 import eventBus from 'src/lib/event-bus';
-import {MessagesAlert, MessagesAlertContainer, NotificationsAlert, NotificationAlert} from 'react-blur-admin';
+import {MessagesAlert, MessagesAlertContainer,Button, NotificationsAlert, NotificationAlert} from 'react-blur-admin';
 import {Row, Col} from 'react-flex-proto';
 
 export class PageTop extends React.Component {
@@ -23,6 +26,8 @@ export class PageTop extends React.Component {
 
   constructor(props) {
     super(props);
+    this.renderLoginButt = this.renderLoginButt.bind(this);
+    this.renderUserSection = this.renderUserSection.bind(this);
     this.state = {
       notifications: [{
         user: {
@@ -97,6 +102,7 @@ export class PageTop extends React.Component {
         relativeTime: moment('07/13/16 12:00').fromNow(),
       }],
     };
+
   }
 
   state = {
@@ -110,15 +116,25 @@ export class PageTop extends React.Component {
 
   onToggleMenu() {
     this.setState({ isMenuOpen: ! this.state.isMenuOpen });
+
   }
 
   onLogout() {
-    eventBus.emit('logout');
+    localStorage.setItem('userToken','NaN');
+    localStorage.setItem('userRole','NaN');
+
+  }
+
+  redirectToLogin() {
+    localStorage.setItem('userToken','NaN');
+    localStorage.setItem('userRole','NaN');
+    browserHistory.push('/auth');
   }
 
   renderLogo() {
     return (
-      <Link to={{ pathname: '/' }} className="al-logo clearfix">{this.state.appName}</Link>
+    <img style={{float:'left', height: 66, paddingBottom: 10}} src={logo} alt="logo" />
+    //<Link to={{ pathname: '/welcome' }} className="al-logo clearfix"/>
     );
   }
 
@@ -157,6 +173,17 @@ export class PageTop extends React.Component {
     });
   }
 
+ renderLoginButt(){
+   //restituisco il bottone per il login all'interfaccia
+  return(
+    <div className="user-profile clearfix">
+      <a href={this.props.location.pathname} onClick={e => this.redirectToLogin(e)}>
+        <Button type="success" name="Login" size="lg" title="Login"/>
+      </a>
+    </div>
+  );
+ }
+
   renderUserSection() {
     return (
       <div className="user-profile clearfix">
@@ -165,17 +192,17 @@ export class PageTop extends React.Component {
             <img src={this.props.user && this.props.user.picture ? this.props.user.picture : Person}/>
           </a>
           <ul className="top-dropdown-menu profile-dropdown dropdown-menu">
-            <li><i className="dropdown-arr"></i></li>
-            <li><Link to="/"><i className="fa fa-user"></i>Profile</Link></li>
-            <li><Link to="/'"><i className="fa fa-cog"></i>Settings</Link></li>
+            {/*<li><i className="dropdown-arr"></i></li>
+            <li><Link to="/profilo-azienda"><i className="fa fa-user"></i>Profilo Azienda</Link></li>
+            <li><Link to="/'"><i className="fa fa-cog"></i>Impostazioni</Link></li>*/}
             <li>
-              <a href={this.props.location.pathname} className="signout" onClick={e => this.onLogout()}>
-                <i className="fa fa-power-off"></i>Sign out
+              <a href={this.props.location.pathname} className="signout" onClick={e => this.onLogout(e)}>
+                <i className="fa fa-power-off"></i>Logout
               </a>
             </li>
           </ul>
         </div>
-        <Row>
+        {/*<Row>
           <Col padding='5px 2px'>
             <MessagesAlertContainer mailCount={this.state.messages.length} markAllAsReadOnClick={noop} allMessagesOnClick={noop} settingsOnClick={noop} >
               {this.renderMessages()}
@@ -188,7 +215,7 @@ export class PageTop extends React.Component {
                 {this.renderNotifications()}
             </NotificationsAlert>
           </Col>
-        </Row>
+        </Row>*/}
       </div>
     );
   }
@@ -197,14 +224,25 @@ export class PageTop extends React.Component {
     // dropdown - .open
     // @todo msg-center
     // onClick startSearch
-    // import message cente
+    // import message center
+    let usersection = null;
+    if (localStorage.getItem('userToken') == 'NaN') {
+      usersection = this.renderLoginButt();
+    }else{
+      usersection = this.renderUserSection();
+    }
     return (
+
       <div className="page-top clearfix" scroll-position="scrolled" max-height="50">
+
         {this.renderLogo()}
-        {this.renderHamburgerMenu()}
-        {this.renderSearch()}
-        {this.renderUserSection()}
+        {/*this.renderHamburgerMenu()*/}
+        {/*{this.renderSearch()}*/}
+        {/* Faccio il render del centro notifiche solo se l'utente e' loggato altrimenti do la possibilita' di accedere*/}
+        {usersection}
+
       </div>
+
     );
   }
 }

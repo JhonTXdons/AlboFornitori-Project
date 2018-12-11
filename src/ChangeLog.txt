@@ -1,0 +1,13 @@
+-Inserimento bottoni per il caricamento dei documenti per il bando
+-modifica per filtro sidebar e pagine a seconda del ruolo
+-tolto il search nella barra "top"
+-installazione express e mysql per interfaccia con db 25/10/2018
+-modifica file "dev-server.js" per interfacciarsi con il db 25/10/2018
+-risoluzione problema connessione al db e creazione "/auth/login" come endpoint per il login
+19/11/2018
+-inserimento bottone login per autenticazione da home
+-correzione modulo di registrazione
+-collegamento di tutte le pagine con i rispettivi ruoli
+-risoluzione data picker
+-risoluzione filtro ricerca bandi per categoria
+-notifiche konora

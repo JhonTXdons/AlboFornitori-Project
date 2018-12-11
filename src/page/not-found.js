@@ -3,15 +3,17 @@ import React from 'react';
 import { Page, Panel, Breadcrumbs } from 'react-blur-admin';
 import { Link } from 'react-router';
 
+import _ from 'lodash';
+
 export class NotFound extends React.Component {
 
   renderBreadcrumbs() {
     return (
       <Breadcrumbs>
-        <Link to='/'>
+        <Link to='/new-home'>
           Home
         </Link>
-          You're lost!
+          Ti sei perso?!
       </Breadcrumbs>
     );
   }
@@ -20,10 +22,9 @@ export class NotFound extends React.Component {
     return (
       <Page actionBar={this.renderBreadcrumbs()} title='404 Not Found'>
         <Panel title='Page Not Found'>
-          The page you were looking for wasn't found!
+          Ahia, c'è un problema, la pagina che tu stai cercando credo non esita :D
         </Panel>
       </Page>
     );
   }
 }
-
