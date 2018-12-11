@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pkg = require('./package.json');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -48,6 +49,10 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new CopyWebpackPlugin([
+    // relative path is from src
+    { from: './src/init/favicon.ico' }, // <- your path to favicon
+  ])
   ],
   module: {
     loaders: [
