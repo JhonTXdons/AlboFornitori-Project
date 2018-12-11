@@ -11,3 +11,7 @@
 -risoluzione data picker
 -risoluzione filtro ricerca bandi per categoria
 -notifiche konora
+
+Andrea 
+-----------------------------------------------------------------------------
+- Tentativo di utilizzare GitKraken
